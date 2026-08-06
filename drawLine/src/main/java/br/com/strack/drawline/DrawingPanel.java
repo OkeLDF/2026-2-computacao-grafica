@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package br.com.strack.drawline;
 
 import javax.swing.JPanel;
@@ -36,6 +32,7 @@ class DrawingPanel extends JPanel {
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
         
-        g.drawString("(" + mouseX + ", " + mouseY + ")", 10, 20);
+        g.setFont(new Font("Serif", Font.PLAIN, 20));
+        g.drawString("(" + mouseX + ", " + mouseY + ")", 10, 25);
     }
 }
