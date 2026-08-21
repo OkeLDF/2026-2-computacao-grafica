@@ -1,5 +1,7 @@
 package com.uepg.robotgame;
 
+import javax.swing.SwingUtilities;
+
 /**
  *
  * @author okeldf
@@ -8,6 +10,6 @@ package com.uepg.robotgame;
 public class RobotGame {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        SwingUtilities.invokeLater(() -> new RobotGameFrame());
     }
 }

@@ -9,47 +9,38 @@ public class Line {
     private int endX; 
     private int endY;
     private int lineSize;
-    private boolean usingBresenham;
+
+    private Color color;
+    private float opacity = 1.0f;
     
-    public Line(int startX, int startY, int endX, int endY, boolean usingBresenham, int lineSize){
+    public Line(int startX, int startY, int endX, int endY, int lineSize, Color color){
         this.startX = startX;
         this.startY = startY;
         this.endX = endX;
         this.endY = endY;
-        this.usingBresenham = usingBresenham;
         this.lineSize = lineSize;
+        this.color = color;
     }
-
-    public void draw(Graphics g) {
-        if (this.usingBresenham) {
-            this.bresenham(g);
-        }
-        else{
-            this.naive(g);
-        }
-    }
-
-    public void naive(Graphics g) {
-
-        g.setColor(new Color(40, 80, 196));
-
-        int x;
-        double dy = endY - startY;
-        double dx = endX - startX;
-        double m = dy / dx;
-        double y = startY;
-
-        for (x = startX; x <= endX; x++) {
-
-            g.fillRect(x, (int) Math.round(y), lineSize, lineSize);
-
-            y = y + m;
-        }
+    
+    public Line(int startX, int startY, int endX, int endY, int lineSize){
+        this.startX = startX;
+        this.startY = startY;
+        this.endX = endX;
+        this.endY = endY;
+        this.lineSize = lineSize;
+        this.color = new Color(139, 218, 13);
     }
 
     public void bresenham(Graphics g) {
         
-        g.setColor(new Color(196, 40, 40));
+        int alpha = Math.round(opacity * 255);
+
+        g.setColor(new Color(
+                color.getRed(),
+                color.getGreen(),
+                color.getBlue(),
+                alpha
+        ));
         
         int x = startX;
         int y = startY;
@@ -100,12 +91,12 @@ public class Line {
         return endY;
     }
 
-    public boolean getUsingBresenham() {
-        return usingBresenham;
+    public float getOpacity() {
+        return opacity;
     }
 
-    public void setUsingBresenham(boolean usingBresenham) {
-        this.usingBresenham = usingBresenham;
+    public void setOpacity(float opacity) {
+        this.opacity = opacity;
     }
 
     public void setStartX(int newStartX) {
